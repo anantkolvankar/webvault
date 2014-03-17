@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Webvault | <%= content_for?(:title) ? yield(:title) : "Secure your file-sharing with us" %></title>  
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="header_wrapper">  
+      <div class="logo">  
+        <%= link_to "WebVault", root_url %>  
+      </div>  
+      <div id="login_user_status">  
+        <% if user_signed_in? %>  
+         <%= current_user.email  %>   
+          |  
+         <%= link_to "Logout", destroy_user_session_path, :method=> :delete, :class => 'navbar-link'  %>
+         
+        <% else %>  
+          <em>Not Signed in.</em>  
+          <%= link_to 'Sign in', new_user_session_path%>  
+          or  
+          <%= link_to 'Sign up', new_user_registration_path%>  
+        <% end %>  
+      </div>
+    </div>  
+    <div id="container">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+      <%= content_tag :h1, yield(:title) if show_title? %>
+      <%= yield %>
+
+    </div>
+  </body>
+</html>
