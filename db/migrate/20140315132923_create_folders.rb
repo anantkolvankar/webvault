@@ -8,6 +8,6 @@ class CreateFolders < ActiveRecord::Migration
       t.timestamps
     end
     add_index :folders, :parent_id  
-     add_index :folders, :user_id
+    add_index :folders, :user_id
   end
 end

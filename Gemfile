@@ -9,6 +9,7 @@ gem 'mysql2'
 gem 'devise'
 gem 'simple_roles'
 gem "paperclip", "~> 4.1"
+gem "acts_as_tree", "~> 1.5.0"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 #gem 'carrierwave'

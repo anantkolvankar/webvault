@@ -1,4 +1,7 @@
 Webvault::Application.routes.draw do
+  resources :levels
+
+  get "user/create_fetcher"
   resources :folders
 
   resources :assets
@@ -7,6 +10,16 @@ Webvault::Application.routes.draw do
   #get "/home/index" =>'home#index'
   root 'home#index'
   get "assets/get/:id" => "assets#get", :as => "download"
+  get "browse/:folder_id" => "home#browse", :as => "browse" 
+  #for creating folders insiide another folder  
+  get "browse/:folder_id/new_folder" => "folders#new", :as => "new_sub_folder" 
+  #for uploading files to folders  
+  get "browse/:folder_id/new_file" => "assets#new", :as => "new_sub_file" 
+
+  #form for creating new fetcher by admin
+  get "new_fetcher" => "users#new_fetcher"
+  post "create_fetcher" => "users#create_fetcher"
+  get "fetcher" => "users#fetcher"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

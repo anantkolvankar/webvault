@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140315132923) do
+ActiveRecord::Schema.define(version: 20140325111536) do
 
   create_table "assets", force: true do |t|
     t.integer  "user_id"
@@ -21,8 +21,10 @@ ActiveRecord::Schema.define(version: 20140315132923) do
     t.string   "upload_file_content_type"
     t.integer  "upload_file_file_size"
     t.datetime "upload_file_updated_at"
+    t.integer  "folder_id"
   end
 
+  add_index "assets", ["folder_id"], name: "index_assets_on_folder_id", using: :btree
   add_index "assets", ["user_id"], name: "index_assets_on_user_id", using: :btree
 
   create_table "folders", force: true do |t|
@@ -35,6 +37,12 @@ ActiveRecord::Schema.define(version: 20140315132923) do
 
   add_index "folders", ["parent_id"], name: "index_folders_on_parent_id", using: :btree
   add_index "folders", ["user_id"], name: "index_folders_on_user_id", using: :btree
+
+  create_table "levels", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -55,6 +63,8 @@ ActiveRecord::Schema.define(version: 20140315132923) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "upload_file"
+    t.integer  "parent_id"
+    t.integer  "level_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

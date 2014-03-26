@@ -15,7 +15,11 @@ class AssetsController < ApplicationController
 
   # GET /assets/new
   def new
-    @asset = current_user.assets.new
+     @asset = current_user.assets.build      
+    if params[:folder_id] #if we want to upload a file inside another folder  
+     @current_folder = current_user.folders.find(params[:folder_id])  
+     @asset.folder_id = @current_folder.id  
+    end  
   end
 
   # GET /assets/1/edit
@@ -25,17 +29,18 @@ class AssetsController < ApplicationController
   # POST /assets
   # POST /assets.json
   def create
-@asset = current_user.assets.new(asset_params)
-#    @asset = Asset.upload_file = (params[:file])
-    respond_to do |format|
-      if @asset.save
-        format.html { redirect_to root_url, notice: 'Asset was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @asset }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @asset.errors, status: :unprocessable_entity }
-      end
-    end
+@asset = current_user.assets.build(asset_params)  
+  if @asset.save  
+   flash[:notice] = "Successfully uploaded the file."  
+  
+   if @asset.folder #checking if we have a parent folder for this file  
+     redirect_to browse_path(@asset.folder)  #then we redirect to the parent folder  
+   else  
+     redirect_to root_url  
+   end        
+  else  
+   render :action => 'new'  
+  end  
   end
 
   # PATCH/PUT /assets/1
@@ -81,6 +86,6 @@ class AssetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def asset_params
-      params.require(:asset).permit(:user_id, :upload_file)
-          end
+      params.require(:asset).permit(:user_id, :upload_file, :folder_id)
+    end
 end

@@ -1,0 +1,12 @@
+<h1>create a new fetcher</h1>
+<%= form_for(@user, :url => create_fetcher_path) do |f| %>
+
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+  <%= f.select(:level_id, Level.all.collect {|a| [a.name, a.id]})%>
+  <%= f.submit "create fetcher"%>
+<% end %>
