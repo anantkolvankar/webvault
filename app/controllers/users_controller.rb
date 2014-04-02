@@ -16,7 +16,8 @@ class UsersController < ApplicationController
   end
 
   def fetcher
-    @fetchers = current_user.childs
+    @fetchers = current_user.childs.where('level_id IS NOT NULL')
+    puts @fetchers
   end
 
   private

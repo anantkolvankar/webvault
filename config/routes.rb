@@ -20,6 +20,10 @@ Webvault::Application.routes.draw do
   get "new_fetcher" => "users#new_fetcher"
   post "create_fetcher" => "users#create_fetcher"
   get "fetcher" => "users#fetcher"
+ 
+  scope "api" do
+    get "/emergency/:level" => "api#emergency"
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

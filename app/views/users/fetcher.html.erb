@@ -1,1 +1,15 @@
-<%= @fetchers.count%>
+Total Fetchers:- <%= @fetchers.count%>
+<table>
+<th>User</th>
+<th>Level</th>
+<% @fetchers.each do |fetcher| %>
+<tr>
+	<td>
+		<%= fetcher.email %>
+	</td>
+	<td>
+		<%= fetcher.level.name %>
+	</td>
+</tr>
+<% end %>
+</table>

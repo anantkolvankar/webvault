@@ -48,7 +48,7 @@ class AssetsController < ApplicationController
   def update
     respond_to do |format|
       if @asset.update(asset_params)
-        format.html { redirect_to @asset, notice: 'Asset was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Asset was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -86,6 +86,6 @@ class AssetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def asset_params
-      params.require(:asset).permit(:user_id, :upload_file, :folder_id)
+      params.require(:asset).permit(:user_id, :upload_file, :folder_id,:level_id)
     end
 end

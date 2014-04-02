@@ -11,6 +11,7 @@ do_not_validate_attachment_file_type :upload_file
 belongs_to :user
 #attr_accessible :user_id, :uploaded_file, :folder_id  
 belongs_to :folder
+belongs_to :level
 #f=model method to return file name
 def file_name  
  upload_file_file_name  
