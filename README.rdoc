@@ -1,28 +1,22 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+*Readme: Short Description
+
+Webvault is an application that can be used by datacenters to migrate there files whenever a emergency like fire, natural calamities occures. which will be detected with the help of sensors and trigger the migrations using our api.
+webvault has three type of users superadmin, admin, fetcher.
+
+	1) Superadmin
+	    1.1) can create a admin user.
+
+	2) Admin
+	    2.1) can create a folder/nested folder as well.
+	    2.2) can upload a file to a particular folder.
+	    2.3) can set/edit the file emergency level type.
+	    2.4) can create a fetcher user with emergency level.
+	3) Fetcher
+		3.1) receives files of his emergency level when an emergency occures.
+
+Details:
+
+    This application allows superadmin to create admin user. Admin user to create folder and nested folder which is done by using acts_as_tree gem. Admin user can upload files to a folder he also has to set the emergency level while uploading a file. Admin user has to set a Emergency level while creating a fetcher user.Every file has it's emergency level so this allows system to migrate files to a fetcher user of same emergency level. When an emergency occures we have an api in the system which will be hit by the seneors so that file will be migarted to fetcher user.
+
