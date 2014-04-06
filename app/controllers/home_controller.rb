@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   	       @admin_users = User.admins
   	  elsif current_user.has_role? :fetcher
   	  	if current_user.level.occured
-  	  	  @assets = current_user.parent.assets.where("folder_id is NULL").order("upload_file_file_name desc")
+  	  	  @assets = current_user.parent.assets.where(:level_id => current_user.level.id).where("folder_id is NULL").order("upload_file_file_name desc")
   	  	  @folders = current_user.parent.folders.roots 
   	  	 end
   	  else
