@@ -21,6 +21,10 @@ Webvault::Application.routes.draw do
   post "create_fetcher" => "users#create_fetcher"
   get "fetcher" => "users#fetcher"
  
+  #form for creating new admin by superadmin
+  get "new_admin" => "users#new_admin"
+  post "create_admin" => "users#create_admin"
+  
   scope "api" do
     get "/emergency/:level" => "api#emergency"
   end

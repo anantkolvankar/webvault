@@ -1,4 +1,4 @@
-<h1>create a new fetcher</h1>
+<h1>Create a New Fetcher</h1>
 <%= form_for(@user, :url => create_fetcher_path) do |f| %>
 
 
@@ -8,5 +8,6 @@
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
   <%= f.select(:level_id, Level.all.collect {|a| [a.name, a.id]})%>
-  <%= f.submit "create fetcher"%>
+  <%= f.submit "Create Fetcher"%>
 <% end %>
+<%= link_to "Back", root_url %>

@@ -11,13 +11,37 @@ class UsersController < ApplicationController
   	@user.parent_id = current_user.id
     puts @user.parent_id
     @user.save
-  	puts @user.errors.full_messages.first
-  	redirect_to root_path, notice: 'fetcher was successfully created.' 
+  	@message = 'Fetcher was successfully created.'
+     if @user.errors.full_messages.first
+        @message = @user.errors.full_messages.first
+     end
+  	redirect_to root_path, notice:  @message
   end
 
   def fetcher
     @fetchers = current_user.childs.where('level_id IS NOT NULL')
     puts @fetchers
+  end
+
+  def new_admin
+   @user = User.new
+  end
+
+  def create_admin
+   create_user_with_role(user_params,'admin')
+  end
+
+  def create_user_with_role(user_form_fields,role)
+    @user = User.new(user_form_fields)
+    @user.role = role
+    @user.parent_id = current_user.id
+    puts @user.parent_id
+    @user.save
+    @message = role.capitalize+' was successfully created.'
+     if @user.errors.full_messages.first
+        @message = @user.errors.full_messages.first
+     end
+    redirect_to root_path, notice:  @message
   end
 
   private

@@ -1,0 +1,12 @@
+<h1>Create a New Admin</h1>
+<%= form_for(@user, :url => create_admin_path) do |f| %>
+
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+  <%= f.submit "Create Admin"%>
+<% end %>
+<%= link_to "Back", root_url %>
