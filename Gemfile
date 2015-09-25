@@ -5,6 +5,7 @@ gem 'rails', '4.0.3'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
+gem 'pg'
 #gem "mysql2","0.3.15"
 gem 'devise'
 gem 'simple_roles'
