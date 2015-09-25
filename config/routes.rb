@@ -9,7 +9,7 @@ Webvault::Application.routes.draw do
   devise_for :users
   #get "/home/index" =>'home#index'
   root 'home#index'
-  get "assets/get/:id" => "assets#get", :as => "download"
+  get "app_assets/get/:id" => "assets#get", :as => "download"
   get "browse/:folder_id" => "home#browse", :as => "browse" 
   #for creating folders insiide another folder  
   get "browse/:folder_id/new_folder" => "folders#new", :as => "new_sub_folder" 
