@@ -3,9 +3,9 @@ Webvault::Application.routes.draw do
 
   get "user/create_fetcher"
   resources :folders
-
+scope '/user' do
   resources :assets
-
+end
   devise_for :users
   #get "/home/index" =>'home#index'
   root 'home#index'
